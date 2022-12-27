@@ -3,3 +3,4 @@ To push the current branch and set the remote as upstream, use
 
     git push --set-upstream origin master
 
+之前的验证失败是因为使用的http，使用ssh配置密钥就可以了

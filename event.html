@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>事件的监听和处理</title>
+</head>
+
+<body>
+    <div id="App">
+        <div>点击次数：{{count}}</div>
+        <!-- <button @click="click()">点击</button> -->
+        <!-- <button @click="count += 1">点击</button> -->
+        <button @click="click(),log()">点击</button>
+        <div @click="click1">外层
+            <div @click="click2">中层
+                <div @click="click3">内层(冒泡事件)</div>
+            </div>
+        </div>
+        --------------------------------------------
+        <div @click.capture="click1">外层
+            <div @click.capture="click2">中层
+                <div @click.capture="click3">内层(事件捕获)</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const App = {
+            data() {
+                return {
+                    count: 0
+                }
+            },
+            methods: {
+                click() {
+                    this.count += 1
+                },
+                // click(event){
+                //     console.log(event)
+                //     this.count += 1
+                // },
+                log(event) {
+                    console.log(event)
+                },
+                click1() {
+                    console.log('外层')
+                },
+                click2() {
+                    console.log('中层')
+                },
+                click3() {
+                    console.log('内层')
+                },
+            }
+        }
+        Vue.createApp(App).mount('#App')
+    </script>
+</body>
+
+</html>

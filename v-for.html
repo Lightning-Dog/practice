@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>登录注册练习</title>
+</head>
+
+<body>
+    <div class="container" id="App">
+        <template v-for="(item,index) in fields">
+            <div v-for="(value,key,index) in item">
+                {{index}}. {{key}}:{{value}}
+            </div>
+        </template>
+    </div>
+    <script>
+        const App = {
+            data() {
+                return {
+                    fields: [{
+                            title: '用户名',
+                            required: true,
+                            type: "text",
+                            model: '',
+                            valid: {
+                                isvalid: false,
+                                validMessage: ''
+                            }
+                        },
+                        {
+                            title: '邮箱',
+                            required: false,
+                            type: "text",
+                            model: '',
+                            valid: {
+                                isvalid: false,
+                                validMessage: ''
+                            }
+                        },
+                        {
+                            title: '密码',
+                            required: true,
+                            type: "password",
+                            model: '',
+                            valid: {
+                                isvalid: false,
+                                validMessage: ''
+                            }
+                        },
+                    ]
+                }
+            },
+            computed: {
+                // 如果和Data中的数据有同名的情况，会优先调用Data中的值
+            },
+            watch: {},
+            methods: {
+            }
+
+        }
+        Vue.createApp(App).mount('#App')
+    </script>
+    <style>
+    </style>
+</body>
+
+</html>

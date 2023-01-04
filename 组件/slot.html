@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>slot</title>
+</head>
+
+<body>
+    <div id="App">
+        <my-slot>普通插槽</my-slot>
+        <my-nameslot><!-- 注意 注册组件时的名称 必须全部小写-->
+            <template v-slot:namelot>具名插槽</template><!-- 注意 使用名字指定插槽时必须要小写-->
+        </my-nameslot>
+    </div>
+    <script>
+        const App = Vue.createApp({
+            data() {
+                return {}
+            }
+        })
+        const slotComponent = {
+            template: "<div style='border-color:red;border-style:solid;height:40px'><slot>普通插槽的默认消息</slot></div>",
+            methods: {}
+        }
+        const nameSlotComponent = {
+            template: '<div style="border-color:red;border-style:solid;height:40px"><slot name="namelot">具名插槽的默认消息</slot></div>',
+            methods: {}
+        }
+        App.component('my-slot', slotComponent)
+        App.component('my-nameslot', nameSlotComponent)
+        App.mount("#App")
+    </script>
+</body>
+
+</html>
